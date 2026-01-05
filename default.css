@@ -1,0 +1,1242 @@
+/* ============ START - VARIABLES ============ */
+:root {
+	/* Color Palette */
+	--custom-color-black: #000000;
+	--custom-color-white: #ffffff;
+
+	/* Base spacing units (used for consistent margins, paddings, and gaps) */
+	--custom-spacing-one: 10px;
+	--custom-spacing-two: 20px;
+	--custom-spacing-three: 40px; /* Previously 30px */
+	--custom-spacing-four: 60px; /* Previously 40px */
+	--custom-spacing-five: 80px; /* Previously 50px */
+	--custom-spacing-six: 100px; /* Previously 60px */
+	--custom-spacing-seven: 120px; /* Previously 70px */
+	--custom-spacing-eight: 140px; /* Previously 80px */
+	--custom-spacing-nine: 160px; /* Previously 90px */
+	--custom-spacing-ten: 180px; /* Previously 100px */
+	--custom-spacing-eleven: 200px;
+	--custom-spacing-twelve: 220px;
+	--custom-spacing-thirteen: 240px;
+	--custom-spacing-fourteen: 260px;
+	--custom-spacing-fifteen: 280px;
+	--custom-spacing-sixteen: 300px;
+
+	/* Section and layout spacing */
+	--custom-width-one: 1500px;
+	--custom-section-viewport-padding: var(--custom-spacing-six); /* Previously --custom-spacing-ten */
+	--custom-section-vertical-padding: var(--custom-spacing-six); /* Previously --custom-spacing-ten */
+	--custom-menu-column-gap: var(--custom-spacing-three); /* Previously --custom-spacing-four */
+	--custom-menu-row-gap: var(--custom-spacing-four); /* Previously --custom-spacing-six */
+	--custom-menu-card-column-gap: var(--custom-spacing-two);
+	--custom-menu-card-row-gap: var(--custom-spacing-two);
+	--custom-menu-padding-with-card: var(--custom-spacing-three); /* Previously --custom-spacing-four */
+	--custom-menu-padding-no-card: 0;
+	--custom-textblock-column-gap: var(--custom-spacing-five); /* Previously --custom-spacing-eight */
+	--custom-textblock-row-gap: var(--custom-spacing-three); /* Previously --custom-spacing-four */
+}
+
+@media (max-width: 1024px) {
+	:root {
+		--custom-section-vertical-padding: var(--custom-spacing-four);  /* Previously --custom-spacing-five */
+		--custom-section-viewport-padding: var(--custom-spacing-four);  /* Previously --custom-spacing-five */
+	}
+}
+
+@media (max-width: 800px) {
+	:root {
+		--custom-section-viewport-padding: var(--custom-spacing-two);
+		--custom-section-vertical-padding: var(--custom-spacing-four);  /* Previously --custom-spacing-five */
+		--custom-menu-padding-with-card: var(--custom-spacing-two);
+	}
+}
+
+.form-v2 {
+  & .form-outer-wrapper {
+    --form-v2-color-scheme-link: var(--custom-color-blue);
+    --form-v2-color-scheme-link-hover: var(--custom-color-blue-dark);
+    --form-v2-color-scheme-button-text: var(--custom-color-white);
+    --form-v2-color-scheme-button-text-hover: var(--custom-color-white);
+    --form-v2-color-scheme-button-background: var(--custom-color-blue);
+    --form-v2-color-scheme-button-background-hover: var(--custom-color-blue-dark);
+    }
+ }
+
+/* ============ END - VARIABLES ============ */
+
+/* ============ START - GLOBAL DEFAULTS ============ */
+
+/* Start -- Form v2 Default Overrides */
+
+.form-v2 {
+  & .form-outer-wrapper {
+    & .multi-step {
+      & button.hollow {
+        background: unset;
+      }
+    }
+ & .button{
+      margin-top: unset;
+      line-height: 1.4;
+    }
+  }
+}
+
+/* update - removing set height on errors  */
+.consultation-section .form-v2 .notification-message-wrapper,
+.contact-form-section .form-v2 .notification-message-wrapper,
+.overlay-contact .form-v2 .notification-message-wrapper,
+.overlay-section .form-v2 .notification-message-wrapper {
+  height: unset;
+}
+
+/* Start --  Consultation Section - allow variable height on steps on mobile as content layout shift is not an issue because we're already sliding them to of form on step switch */
+section.consultation-section,
+section.contact-form-section {
+    & .section-container {
+        & .section-content {
+            & .form-outer-wrapper {
+                @media (max-width:1023px) {
+
+                    & .form-step {
+                        &:not(.active) {
+                            height: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* End -- Consultation Section - allow variable height on steps on mobile as content layout shift is not an issue because we're already sliding them to of form on step switch*/
+
+
+/* End -- Form v2 Default Overrides */
+
+/* Start -- Default overrides */
+
+/* Start --  Consultation Section - allow variable height on steps on mobile as content layout shift is not an issue because we're already sliding them to of form on step switch */
+section.consultation-section,
+section.contact-form-section {
+	& .section-container {
+		& .section-content {
+			& .form-outer-wrapper {
+				@media (max-width:1023px) {
+
+					& .form-step {
+						&:not(.active) {
+							height: 0;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+/* End -- Consultation Section */
+
+/* Start -- Custom intro width restriction for old pages */
+@media (min-width:1024px) {
+
+	section.intro-section,
+	section.textblock-section,
+	section.features-list-section,
+	.section.timeline-section .section-content>.row {
+		& .column:only-child {
+			flex: 0 0 66.6667% !important;
+			max-width: 66.6667% !important;
+		}
+	}
+}
+
+/* End -- Custom intro width restriction for old pages */
+
+/* update hero v2 width not being respected on lower resolutions */
+
+section.hero-v2-section {
+	& .section-container {
+		& .section-content {
+			& .tagline-width {
+				width: 100%;
+			}
+		}
+	}
+}
+
+/* Start -- Locations Section font and color fixes*/
+.multipin-map-section {
+
+	& .multipin-map-item-title {
+		font-size: clamp(1.25rem, -2.1543rem + 5.3191vw, 2.5rem);
+
+		& a {
+			font-size: inherit;
+		}
+	}
+
+	.row-location-buttons .button svg {
+		fill: white;
+		position: relative;
+	}
+
+	& #map {
+		max-width: unset;
+	}
+}
+
+/* End -- Locations Section font and color fixes*/
+
+/* update remove extra padding from hero v2 */
+
+section.hero-v2-tagline-stack-section {
+	& .section-container {
+
+		& .section-content {
+			padding: unset;
+		}
+	}
+}
+
+/* update  */
+/* Start -- Custom overlay mega menu 2.0 side padding */
+#overlay-menu {
+	& .overlay-wrapper {
+		padding: 0 2rem;
+
+		& .multi-column-menu.group-list,
+		.multi-column-menu.group-name {
+			gap: 2rem;
+		}
+	}
+}
+
+/* End -- Custom overlay mega menu 2.0 side padding */
+
+/* Start -- Buttons need double tap mobile safari bug */
+.button {
+	z-index: 1;
+}
+
+/* End -- Buttons need double tap mobile safari bug */
+
+
+/* update -- remove excess spacing when stacking on mobile, shift margin to container rather than buttons */
+section.section .buttons-container {
+	margin-top: 1rem;
+
+	&:not(:last-child) {
+		margin-bottom: 2rem;
+	}
+
+	& .button {
+		margin: unset;
+
+	}
+
+}
+/*  Match height of button without tel icon to button with tel icon when stacked on mobile */
+.buttons-container {
+	& span {
+		&::before {
+			content: "";
+			height: 30px;
+		}
+	}
+}
+
+
+/* update - consultation form is getting an unwanted top margin */
+
+section.consultation-section {
+	& .button.hollow {
+		margin-top: unset;
+	}
+}
+
+/* update - consultation form variable is not being set on /consultation page */
+
+section.consultation-section {
+	--form-max-width: 38rem;
+}
+
+/* Tour button fix */
+.layout .office-tour-section .media svg {
+	border-radius: 10px;
+}
+
+/* fixing error on new consultation form, too many rows and column divs  */
+section.consultation-section {
+	& .section-container {
+		& .section-content {
+			&>.row {
+				&>.column {
+
+					& .row,
+					& .column {
+						display: contents;
+					}
+				}
+			}
+		}
+	}
+}
+
+/* end of error */
+
+/* Image Wide: make background color go full width */
+.image-wide-section.back-stack {
+	max-width: 100% !important;
+}
+
+.image-wide-section.back-stack .section-container {
+
+	& figure {
+		max-width: unset;
+	}
+}
+
+/* Navigation: Increasing hit areas on desktop and mobile for better usability */
+
+.nav-items nav a,
+.section nav.menu-card-item a {
+	padding: 1em;
+	margin: 0;
+
+}
+
+.nav-items nav a:hover,
+.section nav.menu-card-item a:hover {
+	padding: 1em;
+}
+
+@media (max-width: 1024px) {
+	.nav-items nav a {
+		padding: 1em !important;
+		margin: 0;
+	}
+
+	.navigation-c.fixed-navigation-mobile nav {
+		padding: 0;
+	}
+
+	.navigation-c.fixed-navigation-mobile a.slide-menu__control,
+	.navigation-c.fixed-navigation-mobile a:nth-last-child(2) {
+		margin-right: 0;
+	}
+}
+
+blockquote a:not(.button),
+blockquote p {
+	font-size: inherit !important;
+}
+
+blockquote p {
+	all: inherit !important;
+}
+
+.fixed-nav-mobile-section .section-container {
+	padding: 0;
+}
+
+.section a:hover .menu-item-title,
+.section a:hover .menu-item-subtitle {
+	border: none;
+	padding-bottom: 0 !important;
+	text-decoration: none;
+}
+
+a .menu-card-item-title,
+a .menu-item-title,
+a .menu-item-subtitle,
+a .menu-card-item-subtitle {
+	border: none !important;
+}
+
+/* removing unneeded button margins from consultation sections */
+.contact-form-section,
+.consultation-section {
+	& .form-inner-wrapper {
+		.button {
+			margin-top: unset;
+		}
+	}
+}
+
+/* update fixing titles not inheriting proper color in cards */
+section.features-card-section {
+	& .section-container {
+		& .section-content {
+			& .menus {
+				& .menu {
+					& .menu-card-item {
+						& .menu-card-item-description {
+
+							& h1,
+							h2,
+							h3,
+							h4,
+							h5,
+							h6 {
+								color: inherit;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+/* removing author underline from blog card section */
+a .menu-item-subtitle,
+a.blog-card-item .blog-card-item-subtitle,
+h2 .subtitle,
+.case a {
+	border-bottom: none !important;
+
+	&:hover {
+		padding-bottom: 0 !important;
+	}
+}
+
+/* Photo set section revisions */
+@media (min-width: 1024px) {
+	.photo-set-section figcaption {
+		padding: 0 2rem;
+	}
+}
+
+.photo-set-section figcaption strong {
+	display: block;
+}
+
+/* add more side padding to buttons Updated */
+.layout .tns-controls button span,
+.layout a.button span,
+.layout button.button span,
+.overlay-section .button span,
+.layout .buttons-container .button[href^="tel:"] .button-text {
+	padding: 16px 48px;
+	padding-top: 14px;
+}
+
+/* Animation: Animate section content only instead of entire section */
+section.animated.effect-fade-in-up {
+	/*  fixes fixed backgrounds not being respected when there is animation */
+	z-index: 1;
+	animation: none;
+}
+
+section.animated.effect-fade-in-up.back-stack {
+	z-index: unset;
+}
+
+section.animated.effect-fade-in-up .section-content {
+	animation: fadeIn 1s cubic-bezier(.76, 0, .24, 1) 1 !important;
+	animation-delay: .8s;
+	z-index: 1;
+	position: relative;
+
+	@media (max-width:1024px) {
+		animation: none !important;
+
+	}
+}
+
+section.back-stack.animated.effect-fade-in-up .section-container {
+	background-color: transparent;
+}
+
+.animate.effect-fade-in-up {
+	visibility: visible;
+}
+
+.animate.effect-fade-in-up .section-container {
+	visibility: hidden;
+}
+
+/* ruled list fix UPDATED */
+.layout {
+
+	ul.ruled-list,
+	ol.ruled-list {
+		border: none;
+		padding: none;
+
+		& li {
+			padding-left: 0;
+			padding-top: 1rem;
+			padding-bottom: 1rem;
+			box-shadow: 0 1px 0 0px #bbbbbbc7, inset 0 1px 0 0px #bbbbbbc7;
+			margin: 0;
+			border: none;
+		}
+	}
+
+	.services-section .services-wrapper .ruled-list {
+		row-gap: unset;
+	}
+}
+
+/* Navigation: Fade In Animation */
+@media screen and (min-width: 1024px) {
+	.navigation nav {
+		animation: fadeIn .8s .3s cubic-bezier(.76, 0, .24, 1) both;
+	}
+
+	.navigation .logo {
+		animation: fadeIn .8s 0s cubic-bezier(.76, 0, .24, 1) both;
+	}
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+/* Bar / Navigation > Homepage: Move static navigation closer to the top of page for desktop resolutions */
+@media (min-width: 1024px) {
+	.home-page .nav-unstack {
+		top: 20px;
+	}
+}
+
+/* Pods and feature cards better spacing and left alignment */
+@media (min-width: 600px) {
+	section.features-card-section .features-card-item {
+		padding: 0 3rem;
+	}
+}
+
+@media (max-width: 1024px) {
+	section.pods-section .pods-items h2 {
+		margin-top: .5rem;
+	}
+}
+
+section.pods-section .pods-items p,
+section.pods-section .pods-items h2,
+.pods-items .pods-item-content {
+	text-align: left;
+}
+
+/* Textblock Columns: Center images and svgs  */
+.textblock-columns-3-section svg,
+.textblock-columns-3-section p svg,
+.textblock-columns-2-section svg,
+.textblock-columns-2-section p svg,
+.textblock-columns-3-section img,
+.textblock-columns-3-section p img,
+.textblock-columns-2-section img,
+.textblock-columns-2-section p img {
+	margin: 1rem auto;
+	display: block;
+}
+
+/* Video Wide: Remove space between video wide sections and next section */
+section.section.video-looping-wide-section {
+	padding-bottom: 0;
+}
+
+/* Reviews: Increased Padding */
+.reviews-item {
+	padding: 3rem;
+}
+
+@media (max-width:1024px) {
+	.reviews-item {
+		padding: 1.5rem;
+	}
+}
+
+/* Pods: Remove bottom gap on pods section set to front */
+@media (min-width:1024px) {
+	.pods-section.front-stack .section-container:after {
+		bottom: 0rem;
+	}
+
+	.pods-section .section-container {
+		padding-bottom: 0;
+		margin-bottom: -2rem;
+	}
+}
+
+/* stop list links from moving */
+.section-richtext li a:hover {
+	padding-bottom: 0px;
+}
+
+/* fixing px gap that occurs when you have a body background set */
+section {
+	margin-top: -1px;
+}
+
+/* fix quote carousel arrow button color */
+.textblock-quote-carousel-section .section-richtext .swiper-button-next,
+.textblock-quote-carousel-section .section-richtext .swiper-button-prev {
+	color: #fff !important;
+}
+
+/* Hero: Unzoom video */
+section .hero-video video {
+	width: 100vw;
+	height: 100vh;
+	object-fit: cover;
+}
+
+/* Hero: makes hero still span whole height of container even if container is taller than 100vh */
+
+.hero-video {
+	min-height: 100vh;
+	height: 100%;
+}
+
+
+/* Timeline centering fixes */
+@media (min-width:1220px) {
+	.timeline-section .section-button {
+		padding-left: 0 !important;
+	}
+
+	.timeline-wrapper:before {
+		left: calc(50% - 15px);
+	}
+
+	.timeline-wrapper:after {
+		left: calc(50%);
+	}
+
+	.timeline-section .row {
+		padding-left: 0;
+	}
+}
+
+@media (min-width:1024px) {
+	section.hero-inner-section+section.intro-section {
+		padding-top: 5rem;
+	}
+}
+
+section.full-width.back-stack .section-description>.row .column,
+section.full-width.back-stack .section-outro>.row .column,
+.timeline-section .section-heading+.row .column {
+	max-width: 800px !important;
+}
+
+/* Fix announcement sections touching viewport edge when full-width selected */
+.full-width.back-stack .row.announcement-wrapper {
+	padding-left: 1rem;
+	padding-right: 1rem;
+}
+
+/* Reviews: Increased Padding ----------------------- */
+.reviews-item {
+	padding: 3rem;
+}
+
+@media (max-width:1024px) {
+	.reviews-item {
+		padding: 1.5rem;
+	}
+}
+
+/* update video space fix */
+video {
+	display: block;
+}
+
+
+.back-stack.logo-mobile .section-container {
+	padding-top: 10px;
+	padding-bottom: 10px;
+
+	& .section-content {
+		& .row {
+			& .column {
+				height: 100%;
+
+				& .logo {
+					height: 100%;
+
+					& img {
+						height: 100% !important;
+					}
+				}
+			}
+		}
+	}
+}
+
+/* Fix for yet to be loaded image shift causing horizontal scroll */
+.layout {
+	.lazyload,
+	.lazyloading {
+		width: 100%;
+	}
+}
+
+
+/* End --  Default overrides */
+
+/* Start -- All section width  */
+
+/* update remove padding and set max image height from mobile hero preface */
+main section.hero-preface-section {
+	@media (max-width:1024px) {
+		padding-top: unset;
+
+		& .section-container {
+			padding: unset;
+
+			& .section-content {
+				& .hero-preface-mobile-image-wrapper {
+					& img {
+						object-fit: cover !important;
+						max-height: 50vh;
+						width: 100%;
+
+					}
+				}
+			}
+		}
+	}
+}
+
+main .hero-inner-section {
+	padding: unset;
+	max-height: 150px;
+
+}
+
+main .section:not(.hero-inner-section) {
+	padding-top: var(--custom-section-vertical-padding);
+	padding-bottom: var(--custom-section-vertical-padding);
+
+	@media screen and (max-width: 1024px) {
+		&.back-stack .section-container {
+			padding-top: unset;
+			padding-bottom: unset;
+		}
+	}
+}
+
+section.location-section {
+	& .section-container {
+		@media (max-width:1024px) {
+			padding-left: unset !important;
+			padding-right: unset !important;
+		}
+	}
+}
+
+/*  consultation gutter has !important statement, so need to override, also need to exclude .column-multi-pin-map*/
+.column:not([class*="location"]):not(:has(.quote-container)):not(.timeline-item:nth-child(2)),
+section.consultation-section .consultation_gutter_column_1 .column {
+	padding: unset !important;
+}
+
+section.consultation-section .consultation_gutter_column_1 .column {
+	padding: unset !important;
+}
+
+.row .column.textblock,
+.row .column.figure {
+	padding: 0 !important;
+}
+
+.hero-v2-section .section-content {
+	padding-left: 0;
+	padding-right: 0;
+	/* update */
+	max-width: unset !important;
+}
+
+/* Start -- Announcement Sections - Adding gaps */
+section.announcement-b-section,
+section.announcement-section {
+	& .section-container {
+		& .section-content {
+			& .row {
+				column-gap: var(--custom-menu-column-gap);
+				row-gap: var(--custom-menu-row-gap);
+
+			}
+		}
+	}
+}
+
+/* End -- Announcement Sections - Adding gaps */
+
+/* Start -- Features List Sections - Adding gaps */
+
+section.features-list-section {
+	& .section-container {
+		& .section-content {
+			&>.row {
+				& .column {
+					& .features-list-item-wrapper {
+						column-gap: var(--custom-menu-column-gap);
+						row-gap: var(--custom-menu-row-gap);
+					}
+				}
+			}
+		}
+	}
+}
+
+/* End -- Features List Sections - Adding gaps */
+
+.menu-section,
+.reviews-section,
+body.gallery-page .intro-section {
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+
+	& [class*="reviews_gutter"] {
+		margin: 0 !important;
+	}
+
+	& .reviews__wrapper {
+		padding-left: 0 !important;
+		padding-right: 0 !important;
+		margin: 0 !important;
+	}
+
+	& .row.menus,
+	.reviews__wrapper,
+	.category-row,
+	.cases-row {
+		display: flex;
+		flex-flow: wrap;
+		justify-content: center;
+		column-gap: var(--custom-menu-column-gap);
+		row-gap: var(--custom-menu-row-gap);
+
+		& .menu-item-break {
+			display: none;
+		}
+
+		& .menu-photo-card-content {
+			padding: 0;
+		}
+
+		& .menu-photo-card-item-image {
+			width: 100%;
+		}
+
+		& .menu,
+		.reviews-item,
+		.case,
+		.category {
+			/* important needed to override manual instance changes */
+			flex-basis: calc((100% / 3) - (var(--custom-menu-column-gap) * 2 / 3)) !important;
+			max-width: unset;
+			margin: 0;
+			overflow: clip;
+
+			@media (max-width:1024px) {
+				flex-basis: calc((100% / 2) - (var(--custom-menu-column-gap) * 1 / 2)) !important;
+			}
+
+			@media (max-width:640px) {
+				flex-basis: 100% !important;
+			}
+		}
+
+		&.item-count-2 .menu,
+		& .reviews-item,
+		&.item-count-4 .menu {
+			flex-basis: calc((100% / 2) - (var(--custom-menu-column-gap) * 1 / 2)) !important;
+
+			@media (max-width:640px) {
+				flex-basis: 100% !important;
+			}
+		}
+	}
+}
+
+/* update - removing set height on errors  */
+.consultation-section .form-v2 .notification-message-wrapper,
+.contact-form-section .form-v2 .notification-message-wrapper,
+.overlay-contact .form-v2 .notification-message-wrapper,
+.overlay-section .form-v2 .notification-message-wrapper {
+	height: unset;
+}
+
+/* removing a max-width that is overriding consultation form v2 max width setting  */
+.contact-form-section .column:only-child {
+	max-width: unset;
+}
+
+@media screen and (max-width: 640px) {
+	.section-heading {
+		padding-left: 0;
+		padding-right: 0;
+	}
+}
+
+/* new side padding for all sections and navigation.  "section" not included in identifier so it also targets nav*/
+.section-container {
+	padding-left: var(--custom-section-viewport-padding);
+	padding-right: var(--custom-section-viewport-padding);
+}
+
+.section-richtext blockquote:first-child {
+	margin-top: 0;
+}
+
+/* Column corrections */
+.textblock-columns-3-section,
+.textblock-columns-2-section,
+.textblock-quote-carousel-section,
+.textblock-image-section,
+.consultation-section,
+.contact-form-section,
+.closer-section {
+
+	& .content-row,
+	.section-content>.row,
+	.section-content>.section-form>.row {
+		column-gap: var(--custom-textblock-column-gap);
+		row-gap: var(--custom-textblock-row-gap);
+
+		&>.column {
+			padding: 0 !important;
+
+			&>.image {
+				&:only-child {
+					margin: 0;
+				}
+
+				& img {
+					margin: 0;
+				}
+			}
+
+			&:last-child {
+				@media (max-width:1024px) {
+					margin: 0;
+				}
+			}
+
+			@media (max-width:800px) {
+				flex-basis: 100%;
+				max-width: 100%;
+			}
+		}
+
+	}
+}
+
+.textblock-quote-carousel-section {
+	& .left-on-top.swap--row-reverse {
+		& .column-2 {
+			@media (max-width:800px) {
+				order: -1;
+			}
+		}
+	}
+}
+
+body.gallery-page .intro-section {
+	& .section-heading {
+		margin-bottom: 2rem;
+	}
+
+	& .case,
+	.category {
+		flex: 1;
+		margin: 0;
+
+		& a {
+			max-width: unset;
+			width: 100%;
+
+			& figure {
+				display: flex;
+				flex-flow: column;
+				align-items: center;
+				height: 100%;
+
+				& .row {
+					flex-grow: 1;
+					align-items: center;
+					padding: 10px;
+				}
+
+				& figcaption * {
+					text-align: center !important;
+				}
+			}
+		}
+
+		& img {
+			max-width: fit-content;
+		}
+
+		& h2 {
+			&>span {
+				font-size: 36px;
+
+				@media (max-width:1024px) {
+					font-size: 20px;
+
+					.gallery-page {
+
+						& .case,
+						.category {
+							& a {
+								max-width: unset;
+								width: 100%;
+
+								& h2 {
+									text-align: center;
+								}
+							}
+
+							& img {
+								max-width: fit-content;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 899px) {
+	.column .image {
+		max-height: 50vh;
+		overflow: hidden;
+
+		& img {
+			margin: 0 !important;
+			object-fit: cover;
+			width: 100% !important;
+			height: 100% !important;
+			object-position: top;
+		}
+	}
+}
+
+@media (min-width:1024px) {
+	.pods-section .section-container {
+		padding: 0 var(--custom-section-viewport-padding);
+	}
+
+	.textblock-image-section .section-container {
+		padding: 0 var(--custom-section-viewport-padding);
+	}
+}
+
+.section-content > .row {
+  max-width: 100%;
+}
+
+
+#navigation-mega-2 {
+	.nav-items nav a.overlay-menu-open {
+		margin-right: -1em;
+	}
+}
+
+@media (min-width:1024px) {
+	.navigation .row {
+		padding: 0 !important;
+	}
+
+	.office-tour-section .column.media {
+		padding: 0;
+	}
+
+	.desktop-menu {
+		max-width: var(--custom-width-one);
+		margin: 0 auto;
+	}
+}
+
+.front-stack .section-background,
+.front-stack .section-custom-background {
+	max-width: var(--custom-width-one);
+}
+
+/* stops single column sections from going too wide to be readable */
+@media (min-width:1024px) {
+	section:not(.image-wide-section, .wildcard-section, .menu-block-section) .section-content>.row:not(.consultation-form-quote)>.column:only-child {
+		max-width: 100% !important;
+		flex-basis: 100% !important;
+	}
+
+	.menu-section .section-heading {
+		max-width: var(--custom-width-one);
+	}
+
+	.section-container {
+		max-width: var(--custom-width-one) !important;
+	}
+
+	.menu-section .section-heading {
+		max-width: var(--custom-width-one);
+	}
+}
+
+.services-section .services-wrapper .ruled-list {
+	grid-gap: var(--custom-textblock-column-gap);
+}
+
+/* make videos added to intro full width of container */
+.section-description {
+	& .row {
+		& .column {
+			&:has(.section-richtext figure.media:only-child) {
+				max-width: 100%;
+				flex: 1;
+
+				& figure.media {
+					max-width: unset;
+				}
+			}
+		}
+	}
+}
+
+@media (min-width:640px) and (max-width:1024px) {
+	.section-content>.row:not(.consultation-form-quote)>.column:only-child {
+		max-width: 100%;
+		flex-basis: 100%;
+	}
+
+	.menu-section .section-heading {
+		max-width: 100%;
+	}
+
+	.section-container {
+		max-width: 100%;
+	}
+
+	.menu-section .section-heading {
+		max-width: 100%;
+	}
+}
+
+/* let image wide go full width */
+section.image-wide-section {
+	& .section-container {
+		padding: unset !important;
+	}
+}
+
+section.menu-section {
+	& .menu[data-lucid-group*="Card"] {
+		&>div[class*="item"],&>a[class*="item"] {
+			padding: var(--custom-menu-padding-with-card);
+
+			>*,
+			& .menu-photo-card-content,
+			& .features-card-item {
+				padding: unset;
+			}
+		}
+	}
+
+	& .menu:not([data-lucid-group*="Card"]) {
+		&>div[class*="item"] {
+			padding: var(--custom-menu-padding-no-card);
+		}
+	}
+}
+
+/* update for quote section to bring back alignment */
+
+section.quote-section {
+	& .section-container {
+		& .section-content {
+			&>.row {
+				&>.column:only-child {
+					max-width: 800px !important;
+				}
+			}
+		}
+	}
+}
+
+/* End -- All section widths */
+
+/* Start -- Custom Locations Multipin Map Section */
+.multipin-map-section {
+
+	& .multipin-map-item-title {
+		font-size: clamp(1.25rem, -2.1543rem + 5.3191vw, 2.5rem);
+
+		& a {
+			font-size: inherit;
+		}
+	}
+
+	& .row-show-all-hours,
+	.row-open-today {
+		display: none;
+	}
+
+	& .row-hours-comment {
+		margin: 0 !important;
+		font-weight: bold;
+
+	}
+
+	.row-location-buttons .button svg {
+		fill: white;
+		position: relative;
+	}
+
+	& #map {
+		max-width: unset;
+	}
+}
+
+/* End -- Custom Locations Multipin Map Section */
+
+/* Add space between last mobile menu item and the request an appointment link */
+.slide-menu ul{
+	padding-bottom: 1rem;
+}
+
+/* ============ END - GLOBAL DEFAULTS ============ */
+
+
+<!-- Site-Wide Code ------------------------------------>
+
+<style>
+/* Pods: With Cards ----------------------------------- */
+.pods-section .pods-item-content { /* Square Text */ 
+    background: #fff;
+    padding: 40px 60px;
+    margin: 0 50px;
+    border-radius: 4px;
+    box-shadow: 0px 10px 15px #0000001a;
+}
+
+@media (max-width: 1000px) {
+    .pods-items > .row { flex-direction: column; }
+    .pods-items > .row:nth-child(even) .column { order: -1 !important; }
+    .pods-items > .row .image-box {
+        width: 400px;
+        max-width: 400px;
+        margin: auto auto -50px auto;
+        border-radius: 4px;
+        z-index: -1;
+    }
+    .pods-section .pods-item-content {
+        padding: 20px 20px;
+        margin-bottom: 80px;
+    }
+}
+</style>
